@@ -258,7 +258,7 @@ async function loadOrders(){
     try{
 
         const response =
-            await fetch("http://localhost:3000/orders");
+            await fetch("https://nila-h3jq.onrender.com/orders");
 
         if(!response.ok){
             throw new Error("Server error");
