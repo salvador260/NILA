@@ -472,12 +472,12 @@ async function goToPayment(){
         amount: orderAmount
     };
 console.log("ORDER SENT", order);
-console.log("FETCH URL:", "http://localhost:3000/order");
+console.log("FETCH URL:", "https://nila-h3jq.onrender.com/order");
 alert("کد پرداخت اجرا شد");
 
    try {
 console.log("FETCH STARTED");
-let response = await fetch("https://nila-h3jq.onrender.com", {
+let response = await fetch("https://nila-h3jq.onrender.com/order", {
 
     method: "POST",
 
