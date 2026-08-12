@@ -1,0 +1,82 @@
+setTimeout(() => {
+            showLogin();
+        }, 1000);
+    }
+
+
+    function login() {
+
+        const phone = document.getElementById("loginPhone").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        const message = document.getElementById("loginMessage");
+
+        const savedUser =
+            localStorage.getItem("registeredUser");
+
+        // اگر هنوز ثبت نام نکرده باشد
+        if (!savedUser) {
+
+            message.className = "error";
+            message.innerText =
+                "ابتدا باید در سایت ثبت نام کنید.";
+
+            return;
+        }
+
+        const user = JSON.parse(savedUser);
+
+        // بررسی اطلاعات ثبت شده
+        if (
+            phone === user.phone &&
+            password === user.password
+        ) {
+
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("profilePage").style.display = "block";
+
+            document.getElementById("profileName").innerText =
+                user.name;
+
+            document.getElementById("profilePhone").innerText =
+                user.phone;
+
+        } else {
+
+            message.className = "error";
+            message.innerText =
+                "شماره موبایل یا رمز عبور اشتباه است.";
+
+        }
+    }
+
+
+    function showLogin() {
+
+        document.getElementById("registerPage").style.display = "none";
+        document.getElementById("profilePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+
+    }
+
+
+    function showRegister() {
+
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("profilePage").style.display = "none";
+        document.getElementById("registerPage").style.display = "block";
+
+    }
+
+
+    function goToSite() {
+
+        window.location.href = "index.html";
+
+    }
+
+</script>
+
+</body>
+</html>
+`

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تکمیل سفارش</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6f8;
+            color: #222;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .checkout-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .checkout-header {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .checkout-header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .checkout-header p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .checkout-box {
+            background: #fff;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .checkout-box h2 {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 13px 14px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #555;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .order-summary {
+            border-top: 1px solid #eee;
+            padding-top: 18px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 15px;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid #eee;
+            margin-top: 10px;
+            padding-top: 18px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .payment-button {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            background: #16a34a;
+            color: #fff;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .payment-button:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e11d48;
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .checkout-header,
+            .checkout-box {
+                padding: 18px;
+                border-radius: 14px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .checkout-header h1 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+    <a href="index.html" class="back-button">← بازگشت به فروشگاه</a>
+
+    <div class="checkout-header">
+        <h1>تکمیل سفارش</h1>
+        <p>لطفاً اطلاعات خود را با دقت وارد کنید تا سفارش شما ارسال شود.</p>
+    </div>
+
+    <!-- اطلاعات خریدار -->
+    <div class="checkout-box">
+        <h2>اطلاعات خریدار و ارسال</h2>
+
+        <form id="checkoutForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>
+                        نام و نام خانوادگی
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="مثلاً علی محمدی"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        شماره موبایل
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="09123456789"
+                        maxlength="11"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        استان
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="province"
+                        name="province"
+                        placeholder="مثلاً تهران"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        شهر
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        placeholder="مثلاً تهران"
+                        required
+                    >
+                </div>
+
+                <div class="form-group full">
+                    <label>
+                        آدرس کامل
+                        <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        placeholder="استان، شهر، خیابان، کوچه، پلاک، واحد و ..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        کد پستی
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="postalCode"
+                        name="postalCode"
+                        placeholder="۱۰ رقمی"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>پلاک / واحد</label>
+
+                    <input
+                        type="text"
+                        id="unit"
+                        name="unit"
+                        placeholder="مثلاً پلاک ۱۲، واحد ۳"
+                    >
+                </div>
+
+                <div class="form-group full">
+                    <label>توضیحات سفارش</label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="اگر توضیح خاصی برای ارسال سفارش دارید اینجا بنویسید..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+
+    <!--    خلاصه سفارش -->
+    <div class="checkout-box">
+
+        <h2>خلاصه سفارش ❌حتماً بعد از پرداخت و بازگشت به صفحه اصلی سایت صفحه را یک بار رفرش کنید ❌</h2>
+
+        <div class="order-summary" id="cartSummary"></div>
+
+        <div class="summary-row">
+            <span>هزینه ارسال</span>
+            <strong id="shippingPrice">رایگان</strong>
+        </div>
+
+        <div class="summary-row total">
+            <span>مبلغ قابل پرداخت</span>
+            <strong id="finalPrice">۰ تومان</strong>
+        </div>
+
+        <button
+            type="button"
+            class="payment-button"
+            onclick="goToPayment()"
+        >
+            پرداخت نهایی
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+const waitingForPayment = localStorage.getItem("waitingForPayment");
+
+if (waitingForPayment === "true") {
+    localStorage.removeItem("waitingForPayment");
+    window.location.href = "success.html";
+}
+
+const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+function formatPrice(number) {
+    return Number(number).toLocaleString("fa-IR") + " تومان";
+}
+
+const cartSummary = document.getElementById("cartSummary");
+const finalPrice = document.getElementById("finalPrice");
+
+let orderAmount = 0;
+
+if (cartItems.length === 0) {
+
+    cartSummary.innerHTML = `
+        <div class="summary-row">
+            <span>سبد خرید</span>
+            <strong>خالی است</strong>
+        </div>
+    `;
+
+} else {
+
+    cartSummary.innerHTML = cartItems.map(item => {
+
+        let price = Number(item.price);
+        let quantity = Number(item.quantity);
+
+        let total = price * quantity;
+
+        orderAmount += total;
+
+        return `
+        <div class="summary-row">
+            <div>
+    <span>${item.name}</span>
+
+    <div style="margin-top:10px;">
+       <button onclick="changeQuantity('${item.name}', -1); return false;">−</button>
+
+        <span style="padding:0 15px;">
+            ${item.quantity}
+        </span>
+        <button onclick="changeQuantity('${item.name}', 1); return false;">+</button>
+
+    
+    </div>
+</div>
+            <strong>${formatPrice(total)}</strong>
+        </div>
+        `;
+
+    }).join("");
+
+}
+
+finalPrice.textContent = formatPrice(orderAmount);
+
+
+
+
+
+console.log(localStorage.getItem("waitingForPayment"));
+
+if (localStorage.getItem("waitingForPayment") === "true") {
+    localStorage.removeItem("waitingForPayment");
+    window.location.href = "success.html";
+}
+function changeQuantity(name, amount){
+
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    let product = cart.find(item => item.name === name);
+
+
+    if(product){
+
+        product.quantity = Number(product.quantity) + amount;
+
+
+        if(product.quantity <= 0){
+
+            cart = cart.filter(
+                item => item.name !== name
+            );
+
+        }
+
+
+        localStorage.setItem(
+            "cartItems",
+            JSON.stringify(cart)
+        );
+
+
+        window.location.reload();
+
+    }
+
+}
+async function goToPayment(){
+    
+
+    const order = {
+        fullName: document.getElementById("fullName").value,
+        phone: document.getElementById("phone").value,
+        province: document.getElementById("province").value,
+        city: document.getElementById("city").value,
+        address: document.getElementById("address").value,
+        postalCode: document.getElementById("postalCode").value,
+        unit: document.getElementById("unit").value,
+        description: document.getElementById("description").value,
+        products: cartItems,
+        amount: orderAmount
+    };
+console.log("ORDER SENT", order);
+console.log("FETCH URL:", "http://localhost:3000/order");
+alert("کد پرداخت اجرا شد");
+
+   try {
+console.log("FETCH STARTED");
+let response = await fetch("http://localhost:3000/order", {
+
+    method: "POST",
+
+    headers:{
+        "Content-Type":"application/json"
+    },
+
+    body: JSON.stringify(order)
+
+});
+
+    let result = await response.json();
+
+    console.log("SERVER RESPONSE:", result);
+
+    alert("ارسال شد");
+
+} catch(error) {
+
+    console.log("FETCH ERROR:", error);
+
+    alert("خطا در اتصال به بک‌اند");
+
+}
+
+
+ alert("سفارش ارسال شد");
+localStorage.setItem("waitingForPayment", "true");
+window.location.href = "https://daramet.com/success.html";
+
+}
+</script>
+
+</body>
+</html>

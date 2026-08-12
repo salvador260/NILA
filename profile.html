@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>سفارش‌های من</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Tahoma;
+    background:#07100d;
+    color:white;
+    padding:20px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+.card{
+    margin:20px 0;
+    padding:20px;
+    border-radius:20px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+}
+
+.product{
+    padding:10px;
+    margin:8px 0;
+    background:rgba(0,0,0,.2);
+    border-radius:10px;
+}
+
+input,button{
+    width:100%;
+    padding:14px;
+    margin:8px 0;
+    border:none;
+    border-radius:12px;
+}
+
+button{
+    background:#0b8f72;
+    color:white;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>👤 سفارش‌های من</h1>
+
+    <input
+        id="phone"
+        type="tel"
+        placeholder="شماره موبایل"
+    >
+
+    <button onclick="loadMyOrders()">
+        مشاهده سفارش‌ها
+    </button>
+
+    <div id="orders">
+    </div>
+
+</div>
+
+
+<script>
+
+async function loadMyOrders(){
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+
+    if(!phone){
+
+        alert("شماره موبایل را وارد کنید");
+
+        return;
+    }
+
+
+    localStorage.setItem("customerPhone",phone);
+
+
+    const response =
+        await fetch(
+            "http://localhost:3000/orders/customer/" +
+            encodeURIComponent(phone)
+        );
+
+
+    const orders =
+        await response.json();
+
+
+    const box =
+        document.getElementById("orders");
+
+
+    if(orders.length === 0){
+
+        box.innerHTML =
+            "<div class='card'>سفارشی برای این شماره پیدا نشد.</div>";
+
+        return;
+    }
+
+
+    box.innerHTML = orders.map(order => `
+
+        <div class="card">
+
+            <h2>${order.status || "سفارش جدید"}</h2>
+
+            <p>
+                مبلغ:
+                ${Number(order.amount).toLocaleString("fa-IR")}
+                تومان
+            </p>
+
+            ${
+                (order.products || []).map(product => `
+
+                    <div class="product">
+
+                        ${product.name}
+
+                        × ${product.quantity}
+
+                    </div>
+
+                `).join("")
+            }
+
+        </div>
+
+    `).join("");
+
+}
+
+
+const savedPhone =
+    localStorage.getItem("customerPhone");
+
+if(savedPhone){
+
+    document.getElementById("phone").value =
+        savedPhone;
+
+}
+
+</script>
+
+</body>
+</html>

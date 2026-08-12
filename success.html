@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>موفقیت سفارش</title>
+
+<style>
+body{
+    background:#f5fbf7;
+    font-family:Tahoma;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.box{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 25px #ddd;
+}
+
+h1{
+    color:#159447;
+}
+
+.code{
+    background:#e9f8ef;
+    padding:15px;
+    border-radius:10px;
+    margin:20px 0;
+    font-size:22px;
+    font-weight:bold;
+}
+
+button{
+    background:#159447;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>ممنون از خرید شما ❤️</h1>
+
+<p>تیم Artin Salvador سفارش شما را با موفقیت دریافت کرد.</p>
+
+<div class="code" id="orderCode"></div>
+
+<p>
+    لطفاً از رسید پرداختی  خود اسکرین‌شات بگیرید.
+  ارسال کنید @salvgang  و به ایدی تلگرام 
+</p>
+
+<button onclick="window.location.href='index.html'">
+بازگشت به سایت
+</button>
+
+</div>
+
+
+<script>
+
+let code =  Math.floor(100000 + Math.random()*900000);
+
+document.getElementById("orderCode").innerText = code;
+
+localStorage.setItem("orderCode", code);
+
+</script>
+<script>
+window.onload = function() {
+    document.body.style.display = "block";
+};
+</script>
+</body>
+</html>
