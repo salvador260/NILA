@@ -179,6 +179,107 @@ app.delete("/orders/:id", async (req, res) => {
     }
 });
 
+// =======================
+// مدیریت محصولات
+// =======================
+
+
+// دریافت همه محصولات
+app.get("/products", async (req,res)=>{
+
+    try{
+
+        const products = await db.find({
+            type:"product"
+        });
+
+        res.json(products);
+
+    }catch(err){
+
+        console.log("PRODUCT GET ERROR:",err);
+
+        res.status(500).json({
+            error:"خطا در دریافت محصولات"
+        });
+
+    }
+
+});
+
+
+
+// اضافه کردن محصول
+app.post("/products", async (req,res)=>{
+
+    try{
+
+        const product = {
+
+            type:"product",
+            name:req.body.name,
+            price:req.body.price,
+            image:req.body.image,
+            description:req.body.description,
+            category:req.body.category,
+            createdAt:new Date()
+
+        };
+
+
+        await db.insert(product);
+
+
+        res.json({
+            message:"محصول اضافه شد",
+            product:product
+        });
+
+
+    }catch(err){
+
+        console.log("PRODUCT ADD ERROR:",err);
+
+        res.status(500).json({
+            error:"خطا در افزودن محصول"
+        });
+
+    }
+
+});
+
+
+
+// حذف محصول
+app.delete("/products/:id", async(req,res)=>{
+
+    try{
+
+        await db.remove(
+            {
+                _id:req.params.id,
+                type:"product"
+            },
+            {}
+        );
+
+
+        res.json({
+            message:"محصول حذف شد"
+        });
+
+
+    }catch(err){
+
+        console.log("PRODUCT DELETE ERROR:",err);
+
+        res.status(500).json({
+            error:"خطا در حذف محصول"
+        });
+
+    }
+
+});
 
 // اجرای سرور
 const PORT = process.env.PORT || 3000;
