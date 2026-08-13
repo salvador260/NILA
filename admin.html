@@ -471,10 +471,10 @@ async function loadOrders(){
 
 
 async function changeStatus(id,status){
-
+alert("changeStatus اجرا شد");
     const response =
         await fetch(
-            "http://localhost:3000/orders/" + id,
+            "https://nila-h3jq.onrender.com/orders/" + id,
             {
                 method:"PUT",
                 headers:{
@@ -505,7 +505,7 @@ async function deleteOrder(id){
 
     const response =
         await fetch(
-            "http://localhost:3000/orders/" + id,
+            "https://nila-h3jq.onrender.com/orders/" + id,
             {
                 method:"DELETE"
             }
