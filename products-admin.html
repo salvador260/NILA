@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NILA Product Admin</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:tahoma;
+}
+
+
+body{
+
+    margin:0;
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top right,#0b8f72,transparent 35%),
+    radial-gradient(circle at bottom left,#111,transparent 40%),
+    #050505;
+
+    color:white;
+
+    padding:30px;
+
+}
+
+
+/* نورهای پس زمینه */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:300px;
+    height:300px;
+
+    background:#0bffb0;
+
+    filter:blur(150px);
+
+    top:0;
+    left:0;
+
+    opacity:.25;
+
+}
+
+
+
+/* پنل اصلی */
+
+.dashboard{
+
+
+    max-width:1100px;
+
+    margin:auto;
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.2);
+
+
+    border-radius:30px;
+
+
+    padding:30px;
+
+
+    box-shadow:
+
+    0 30px 80px #000;
+
+
+}
+
+
+
+/* عنوان */
+
+h1{
+
+
+text-align:center;
+
+font-size:40px;
+
+color:#7dffda;
+
+text-shadow:
+
+0 0 20px #0b8f72;
+
+
+}
+
+
+
+/* کارت های آماری */
+
+.stats{
+
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:20px;
+
+margin:30px 0;
+
+
+}
+
+
+
+.stat{
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+border-radius:25px;
+
+
+padding:25px;
+
+
+text-align:center;
+
+
+box-shadow:
+
+inset 0 0 30px #ffffff10,
+
+
+0 15px 40px #000;
+
+
+transition:.4s;
+
+
+}
+
+
+
+.stat:hover{
+
+
+transform:
+
+translateY(-10px)
+
+rotateX(5deg);
+
+
+}
+
+
+
+.stat h2{
+
+font-size:35px;
+
+color:#7dffda;
+
+}
+
+
+
+
+
+/* فرم */
+
+.form-box{
+
+
+background:
+
+rgba(255,255,255,.1);
+
+
+padding:25px;
+
+
+border-radius:25px;
+
+
+margin-top:30px;
+
+
+}
+
+
+
+input,textarea{
+
+
+width:100%;
+
+padding:15px;
+
+
+margin:10px 0;
+
+
+border-radius:15px;
+
+
+border:none;
+
+
+outline:none;
+
+
+background:
+
+rgba(255,255,255,.15);
+
+
+color:white;
+
+
+font-size:16px;
+
+
+}
+
+
+
+textarea{
+
+height:100px;
+
+}
+
+
+
+
+
+button{
+
+
+width:100%;
+
+padding:15px;
+
+
+border-radius:20px;
+
+
+border:none;
+
+
+cursor:pointer;
+
+
+background:
+
+linear-gradient(135deg,#0b8f72,#00ffb0);
+
+
+color:white;
+
+
+font-size:18px;
+
+
+font-weight:bold;
+
+
+box-shadow:
+
+0 10px 30px #0b8f7266;
+
+
+transition:.3s;
+
+
+}
+
+
+
+button:hover{
+
+
+transform:
+
+scale(1.03);
+
+
+box-shadow:
+
+0 0 40px #0bffb0;
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<h1>
+💚 NILA Admin Panel
+</h1>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<h2 id="count">
+
+0
+
+</h2>
+
+<p>
+تعداد محصولات
+</p>
+
+
+</div>
+
+
+
+<div class="stat">
+
+<h2>
+
+NILA
+
+</h2>
+
+<p>
+Online Store
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<h2>
+➕ افزودن محصول
+</h2>
+
+
+<input id="name" placeholder="نام محصول">
+
+
+<input id="price" placeholder="قیمت">
+
+
+<input id="image" placeholder="لینک عکس">
+
+
+<input id="category" placeholder="دسته بندی">
+
+
+<textarea id="description" placeholder="توضیحات"></textarea>
+
+
+<button>
+افزودن محصول
+</button>
+
+
+</div>
+
+
+</div>
+
+<style>
+
+.products{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+
+.product-card{
+
+
+background:
+
+rgba(255,255,255,.1);
+
+
+border-radius:25px;
+
+
+padding:20px;
+
+
+border:
+
+1px solid rgba(255,255,255,.2);
+
+
+box-shadow:
+
+0 20px 50px #000;
+
+
+transition:.4s;
+
+
+transform-style:preserve-3d;
+
+
+}
+
+
+
+.product-card:hover{
+
+
+transform:
+
+translateY(-10px)
+
+rotateY(8deg);
+
+
+}
+
+
+
+.product-card img{
+
+
+width:100%;
+
+
+height:200px;
+
+
+object-fit:cover;
+
+
+border-radius:20px;
+
+
+}
+
+
+
+.product-card h3{
+
+
+color:#7dffda;
+
+
+}
+
+
+
+.delete-btn{
+
+
+background:
+
+linear-gradient(135deg,#ff3b3b,#900);
+
+
+margin-top:10px;
+
+
+}
+
+
+
+.preview{
+
+
+width:150px;
+
+height:150px;
+
+object-fit:cover;
+
+border-radius:20px;
+
+margin-top:15px;
+
+display:none;
+
+}
+
+</style>
+
+
+
+<div class="products" id="products"></div>
+
+
+
+<script>
+
+
+const API="https://nila-h3jq.onrender.com";
+
+
+
+const imageInput=document.getElementById("image");
+
+const preview=document.createElement("img");
+
+preview.className="preview";
+
+imageInput.after(preview);
+
+
+
+imageInput.addEventListener("input",()=>{
+
+
+if(imageInput.value){
+
+preview.src=imageInput.value;
+
+preview.style.display="block";
+
+
+}else{
+
+preview.style.display="none";
+
+}
+
+
+});
+
+
+
+
+
+async function loadProducts(){
+
+
+const res=await fetch(API+"/products");
+
+
+const data=await res.json();
+
+
+
+document.getElementById("count").innerHTML=data.length;
+
+
+
+const box=document.getElementById("products");
+
+
+box.innerHTML="";
+
+
+
+data.forEach(p=>{
+
+
+box.innerHTML+=`
+
+<div class="product-card">
+
+
+<img src="${p.image}">
+
+
+<h3>${p.name}</h3>
+
+
+<p>
+${p.price} تومان
+</p>
+
+
+<p>
+${p.category || ""}
+</p>
+
+
+<button class="delete-btn"
+onclick="deleteProduct('${p._id}')">
+
+حذف محصول
+
+</button>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+document.querySelector(".form-box button")
+.onclick=async()=>{
+
+
+const product={
+
+name:document.getElementById("name").value,
+
+price:Number(document.getElementById("price").value),
+
+image:document.getElementById("image").value,
+
+category:document.getElementById("category").value,
+
+description:document.getElementById("description").value
+
+};
+
+
+
+await fetch(API+"/products",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify(product)
+
+});
+
+
+
+alert("محصول اضافه شد");
+
+
+loadProducts();
+
+
+};
+
+
+
+
+
+
+async function deleteProduct(id){
+
+
+if(!confirm("حذف شود؟")) return;
+
+
+
+await fetch(API+"/products/"+id,{
+
+method:"DELETE"
+
+});
+
+
+loadProducts();
+
+
+}
+
+
+
+loadProducts();
+
+
+
+</script>
+</body>
+
+</html>

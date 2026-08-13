@@ -481,51 +481,6 @@
 
     <div class="products" id="productList">
 
-        <div class="product" data-name="ویتامین سی">
-            <div class="product-img">🍊</div>
-            <div class="product-info">
-                <h3>ویتامین C</h3>
-                <p>مکمل غذایی</p>
-                <div class="price">۱۸۵,۰۰۰ تومان</div>
-                <button class="add-btn" onclick="addToCart('ویتامین C', 185000)">
-                    افزودن به سبد
-                </button>
-            </div>
-        </div>
-
-        <div class="product" data-name="کرم مرطوب کننده">
-            <div class="product-img">🧴</div>
-            <div class="product-info">
-                <h3>کرم مرطوب‌کننده</h3>
-                <p>مراقبت از پوست</p>
-                <div class="price">۲۴۰,۰۰۰ تومان</div>
-                <button class="add-btn" onclick="addToCart('کرم مرطوب‌کننده', 240000)">
-                    افزودن به سبد
-                </button>
-            </div>
-        </div>
-
-        <div class="product" data-name="شامپو">
-            <div class="product-img">🧼</div>
-            <div class="product-info">
-                <h3>شامپو ضد ریزش</h3>
-                <p>مراقبت از مو</p>
-                <div class="price">۳۲۰,۰۰۰ تومان</div>
-                <button class="add-btn" onclick="addToCart('شامپو ضد ریزش', 320000)">
-                    افزودن به سبد
-                </button>
-            </div>
-        </div>
-
-        <div class="product" data-name="مولتی ویتامین">
-            <div class="product-img">💊</div>
-            <div class="product-info">
-                <h3>مولتی‌ویتامین</h3>
-                <p>مکمل روزانه</p>
-                <div class="price">۴۱۰,۰۰۰ تومان</div>
-                <button class="add-btn" onclick="addToCart('مولتی‌ویتامین', 410000)">
-                    افزودن به سبد
-                </button>
             </div>
         </div>
 
@@ -616,11 +571,216 @@
 
         });
     }
+    const API = "https://nila-h3jq.onrender.com";
+
+
+async function loadProducts(){
+
+    try{
+
+        const res = await fetch(API + "/products");
+
+        const products = await res.json();
+
+
+        const box = document.getElementById("productList");
+
+        box.innerHTML = "";
+
+
+        products.forEach(product => {
+
+
+            box.innerHTML += `
+
+            <div class="product" data-name="${product.name}">
+
+                <div class="product-img">
+
+                    <img src="${product.image}" 
+                    style="width:100%;height:170px;object-fit:cover;">
+
+                </div>
+
+
+                <div class="product-info">
+
+
+                    <h3>${product.name}</h3>
+
+
+                    <p>
+                    ${product.description || ""}
+                    </p>
+
+
+                    <div class="price">
+                    ${product.price.toLocaleString()} تومان
+                    </div>
+
+
+                    <button class="add-btn"
+                    onclick="addToCart('${product.name}',${product.price})">
+
+                    افزودن به سبد
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+            `;
+
+
+        });
+
+
+    }catch(error){
+
+        console.log("PRODUCT LOAD ERROR:",error);
+
+    }
+
+}
+
+async function loadProducts(){
+
+    const res = await fetch(
+        "https://nila-h3jq.onrender.com/products"
+    );
+
+    const data = await res.json();
+
+    const box = document.getElementById("productList");
+
+    box.innerHTML = "";
+
+    data.forEach(product => {
+
+        box.innerHTML += `
+
+        <div class="product">
+
+            <div class="product-img">
+
+                <img src="${product.image}"
+                style="width:100%;height:170px;object-fit:cover;">
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>${product.name}</h3>
+
+                <p>${product.description || ""}</p>
+
+                <div class="price">
+                ${product.price.toLocaleString()} تومان
+                </div>
+
+                <button class="add-btn"
+                onclick="addToCart('${product.name}',${product.price})">
+
+                افزودن به سبد
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+loadProducts();
 if (localStorage.getItem("waitingForPayment") === "true") {
     localStorage.removeItem("waitingForPayment");
    window.location.href = "success.html?t=" + new Date().getTime();
 }
 
+
+</script>
+<script>
+
+async function loadProducts(){
+
+    try{
+
+        const res = await fetch(
+            "https://nila-h3jq.onrender.com/products"
+        );
+
+        const data = await res.json();
+
+
+        const box = document.getElementById("productList");
+
+
+        if(!box) {
+            console.log("productList پیدا نشد");
+            return;
+        }
+
+
+        box.innerHTML = "";
+
+
+        data.forEach(product=>{
+
+            box.innerHTML += `
+
+            <div class="product">
+
+                <div class="product-img">
+
+                    <img src="${product.image}"
+                    style="width:100%;height:170px;object-fit:cover">
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3>${product.name}</h3>
+
+                    <p>${product.description || ""}</p>
+
+
+                    <div class="price">
+                    ${product.price.toLocaleString()} تومان
+                    </div>
+
+
+                    <button class="add-btn"
+                    onclick="addToCart('${product.name}',${product.price})">
+
+                    افزودن به سبد
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+
+    }catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+
+loadProducts();
 
 </script>
 </body>
