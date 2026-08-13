@@ -471,9 +471,10 @@ async function loadOrders(){
 
 
 async function changeStatus(id,status){
-alert("changeStatus اجرا شد");
-    const response =
-        await fetch(
+
+    try{
+
+        const response = await fetch(
             "https://nila-h3jq.onrender.com/orders/" + id,
             {
                 method:"PUT",
@@ -486,14 +487,26 @@ alert("changeStatus اجرا شد");
             }
         );
 
+        if(response.ok){
 
-    if(response.ok){
-        loadOrders();
-    }else{
-        alert("تغییر وضعیت انجام نشد");
+            loadOrders();
+
+        }else{
+
+            const result = await response.json();
+            alert(result.error || "تغییر وضعیت انجام نشد");
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+        alert("خطا در اتصال به سرور");
+
     }
 
 }
+
 
 
 async function deleteOrder(id){
@@ -503,8 +516,9 @@ async function deleteOrder(id){
     }
 
 
-    const response =
-        await fetch(
+    try{
+
+        const response = await fetch(
             "https://nila-h3jq.onrender.com/orders/" + id,
             {
                 method:"DELETE"
@@ -512,21 +526,26 @@ async function deleteOrder(id){
         );
 
 
-    if(response.ok){
-        loadOrders();
-    }else{
-        alert("حذف سفارش انجام نشد");
+        if(response.ok){
+
+            loadOrders();
+
+        }else{
+
+            alert("حذف سفارش انجام نشد");
+
+        }
+
+
+    }catch(error){
+
+        console.log(error);
+        alert("خطا در اتصال به سرور");
+
     }
 
 }
 
-
-function formatDate(date){
-
-    if(!date) return "نامشخص";
-
-    return new Date(date).toLocaleString("fa-IR");
-}
 
 
 function showNotification(){
