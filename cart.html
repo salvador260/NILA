@@ -358,6 +358,15 @@ if (waitingForPayment === "true") {
 }
 
 const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+const savedUser = JSON.parse(localStorage.getItem("user"));
+
+if(savedUser){
+
+    document.getElementById("fullName").value = savedUser.name;
+
+    document.getElementById("phone").value = savedUser.phone;
+
+}
 
 function formatPrice(number) {
     return Number(number).toLocaleString("fa-IR") + " تومان";

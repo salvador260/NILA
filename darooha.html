@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>داروها | داروخانه سلامت</title>
+
+<style>
+body{
+    margin:0;
+    font-family:tahoma;
+    background:#f5f8f7;
+}
+
+header{
+    background:#0b8f72;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:25px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+.product{
+    background:white;
+    border-radius:20px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 10px 25px #0002;
+}
+
+.product img{
+    width:130px;
+    height:130px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.price{
+    font-weight:bold;
+}
+
+button{
+    background:#0b8f72;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:15px;
+}
+
+@media(max-width:700px){
+    .products{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+💊 داروها
+</header>
+
+
+<div class="products">
+
+<div class="product">
+
+<img src="images/daroo.jpg">
+
+<h3>نام دارو</h3>
+
+<p>توضیحات محصول</p>
+
+<div class="price">
+100,000 تومان
+</div>
+
+<br>
+
+<button>
+افزودن به سبد
+</button>
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>

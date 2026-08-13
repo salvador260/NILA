@@ -1,93 +1,485 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ثبت نام</title>
+
+<title>ثبت نام | NILA</title>
+
+
 <style>
-*{box-sizing:border-box;font-family:Tahoma,Arial,sans-serif}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,Arial;
+}
+
+
 body{
- margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;
- background:linear-gradient(135deg,#dffff0,#ffffff,#a8ffd0);
- overflow:hidden;perspective:1200px;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+
+    linear-gradient(135deg,#020202,#0b2b19,#ffffff);
+
 }
-body:before,body:after{
- content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.6;
+
+
+/* حباب های نور */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(80px);
+
+    animation:float 8s infinite alternate;
+
 }
-body:before{width:250px;height:250px;background:#39ff9a;top:10%;left:10%}
-body:after{width:300px;height:300px;background:#baffdc;bottom:5%;right:10%}
+
+
+body::before{
+
+    width:350px;
+
+    height:350px;
+
+    background:#20ff70;
+
+    top:-100px;
+
+    right:-100px;
+
+    opacity:.35;
+
+}
+
+
+body::after{
+
+    width:300px;
+
+    height:300px;
+
+    background:#ffffff;
+
+    bottom:-100px;
+
+    left:-100px;
+
+    opacity:.2;
+
+}
+
+
+
+@keyframes float{
+
+from{
+
+transform:translate(0,0);
+
+}
+
+to{
+
+transform:translate(80px,60px);
+
+}
+
+}
+
+
+
 
 .register-box{
- width:90%;max-width:420px;padding:35px;
- background:rgba(255,255,255,.25);
- backdrop-filter:blur(20px);
- -webkit-backdrop-filter:blur(20px);
- border:1px solid rgba(255,255,255,.8);
- border-radius:30px;
- box-shadow:0 30px 70px rgba(0,130,70,.25),inset 0 0 30px rgba(255,255,255,.8);
- transform-style:preserve-3d;
- transition:.15s;
- animation:show .8s ease;
- z-index:2;
-}
-@keyframes show{from{opacity:0;transform:translateY(50px)}to{opacity:1}}
 
-h1{
- text-align:center;color:#078344;font-size:32px;
- text-shadow:0 0 15px #8cffbd;
- margin-bottom:25px;
+
+position:relative;
+
+width:400px;
+
+padding:45px;
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(255,255,255,.35),
+
+rgba(255,255,255,.08)
+
+);
+
+
+
+backdrop-filter:blur(30px);
+
+
+
+border-radius:35px;
+
+
+
+border:
+
+1px solid rgba(255,255,255,.5);
+
+
+
+box-shadow:
+
+
+0 50px 100px rgba(0,0,0,.5),
+
+
+inset 0 0 40px rgba(255,255,255,.25);
+
+
+
+transform-style:preserve-3d;
+
+
+
+animation:
+
+card 1s ease;
+
 }
+
+
+
+.register-box:hover{
+
+
+transform:
+
+rotateY(-5deg)
+
+rotateX(5deg);
+
+
+}
+
+
+
+@keyframes card{
+
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(80px)
+
+scale(.7);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0)
+
+scale(1);
+
+}
+
+}
+
+
+
+
+
+h2{
+
+
+color:white;
+
+font-size:32px;
+
+text-align:center;
+
+margin-bottom:35px;
+
+
+text-shadow:
+
+0 0 20px #23d766;
+
+
+}
+
+
+
+
+
 input{
- width:100%;padding:15px;margin:12px 0;
- border:none;border-radius:16px;
- background:rgba(255,255,255,.45);
- backdrop-filter:blur(10px);
- box-shadow:0 8px 20px rgba(0,120,70,.15);
- outline:none;font-size:16px;color:#075c32;
+
+
+width:100%;
+
+
+padding:17px;
+
+
+margin-bottom:20px;
+
+
+border:none;
+
+
+outline:none;
+
+
+border-radius:18px;
+
+
+
+background:
+
+rgba(255,255,255,.15);
+
+
+
+color:white;
+
+
+font-size:16px;
+
+
+
+border:
+
+1px solid rgba(255,255,255,.3);
+
+
+
+transition:.4s;
+
+
 }
-input:focus{box-shadow:0 0 20px #55ff9c}
+
+
+
+input::placeholder{
+
+color:#ddd;
+
+}
+
+
+
+input:focus{
+
+
+background:
+
+rgba(255,255,255,.3);
+
+
+
+box-shadow:
+
+
+0 0 30px #23d766;
+
+
+transform:
+
+translateZ(20px);
+
+}
+
+
+
+
 
 button{
- width:100%;padding:15px;margin-top:10px;
- border:0;border-radius:16px;
- background:linear-gradient(135deg,#00c96b,#087c3d);
- color:white;font-size:18px;cursor:pointer;
- box-shadow:0 12px 25px rgba(0,160,80,.35);
- transition:.3s;
-}
-button:hover{transform:translateY(-5px)}
 
+
+width:100%;
+
+
+padding:18px;
+
+
+
+border:none;
+
+
+
+border-radius:20px;
+
+
+
+font-size:18px;
+
+
+
+font-weight:bold;
+
+
+
+color:white;
+
+
+
+cursor:pointer;
+
+
+
+background:
+
+
+linear-gradient(
+
+135deg,
+
+#23d766,
+
+#087c36
+
+);
+
+
+
+box-shadow:
+
+
+0 0 30px #23d766;
+
+
+
+transition:.4s;
+
+
+}
+
+
+
+button:hover{
+
+
+transform:
+
+translateY(-8px)
+
+scale(1.05);
+
+
+
+box-shadow:
+
+
+0 0 60px #23d766;
+
+
+}
 </style>
+
 </head>
+
+
 <body>
 
-<div class="register-box" id="box">
-<h1>ثبت نام</h1>
-<form action="profile.html">
-<input type="text" placeholder="نام و نام خانوادگی" required>
-<input type="tel" placeholder="شماره موبایل" required>
-<input type="password" placeholder="رمز عبور" required>
-<button type="submit">ثبت نام</button>
-</form>
+
+<div class="register-box">
+
+
+<h2>
+ثبت نام در NILA
+</h2>
+
+
+<input id="name" placeholder="نام و نام خانوادگی">
+
+
+<input id="phone" placeholder="شماره موبایل">
+
+
+<input id="password" type="password" placeholder="رمز عبور">
+
+
+<button onclick="registerUser()">
+
+ثبت نام
+
+</button>
+
+
 </div>
 
+
+
 <script>
-const box=document.getElementById("box");
 
-function move(e){
- let x=e.touches?e.touches[0].clientX:e.clientX;
- let y=e.touches?e.touches[0].clientY:e.clientY;
- let rx=(innerHeight/2-y)/25;
- let ry=(x-innerWidth/2)/25;
- box.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+function registerUser(){
+
+
+let user={
+
+name:
+document.getElementById("name").value,
+
+
+phone:
+document.getElementById("phone").value,
+
+
+password:
+document.getElementById("password").value
+
+};
+
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(user)
+);
+
+
+
+alert("ثبت نام موفق بود");
+
+
+window.location.href="profile.html";
+
+
 }
-document.addEventListener("mousemove",move);
-document.addEventListener("touchmove",move);
 
-document.addEventListener("mouseleave",()=>{
- box.style.transform="rotateX(0) rotateY(0)";
-});
+
 </script>
 
+
 </body>
+
 </html>

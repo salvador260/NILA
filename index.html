@@ -76,7 +76,7 @@
 
         .cart {
             background: #e9f8ef;
-            color: #159447;
+            color: #fcfcfc;
             border: none;
             padding: 10px 16px;
             border-radius: 12px;
@@ -265,7 +265,10 @@
             font-weight: bold;
             margin-bottom: 12px;
         }
-
+.category{
+    text-decoration:none;
+    color:inherit;
+}
         .add-btn {
             width: 100%;
             padding: 11px;
@@ -275,6 +278,14 @@
             border-radius: 10px;
             cursor: pointer;
         }
+
+        .product img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    background:rgb(255, 255, 255);
+    padding:10px;
+}
 
         .contact {
             margin-top: 40px;
@@ -371,6 +382,615 @@
                 width: 92%;
             }
         }
+        /* ===== NILA ULTRA PREMIUM UI ===== */
+
+
+/* پس زمینه حرفه ای */
+
+body{
+
+background:
+radial-gradient(circle at 10% 20%,rgba(21,148,71,.18),transparent 25%),
+radial-gradient(circle at 90% 10%,rgba(0,0,0,.12),transparent 30%),
+linear-gradient(135deg,#ffffff,#e9f5ed);
+
+}
+
+
+
+/* هدر شناور */
+
+header{
+
+background:
+rgba(255,255,255,.45);
+
+backdrop-filter:
+blur(25px);
+
+border:
+1px solid rgba(255,255,255,.8);
+
+border-radius:0 0 25px 25px;
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.15);
+
+}
+
+
+
+/* لوگو */
+
+.logo{
+
+text-shadow:
+0 5px 15px rgba(34, 78, 23, 0.3);
+
+}
+
+
+
+/* کارت ها */
+
+.product,
+.category{
+
+position:relative;
+
+overflow:hidden;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,255,255,.9),
+rgba(255,255,255,.35)
+);
+
+backdrop-filter:
+blur(20px);
+
+
+border:
+1px solid rgba(255,255,255,.9);
+
+
+box-shadow:
+
+0 30px 60px rgba(0,0,0,.12),
+
+inset 0 0 30px rgba(255,255,255,.6);
+
+
+transition:.5s;
+
+}
+
+
+
+/* نور روی کارت */
+
+.product::before,
+.category::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+
+left:-100%;
+
+width:200%;
+
+height:200%;
+
+
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.7),
+transparent
+);
+
+
+transform:rotate(30deg);
+
+transition:.7s;
+
+}
+
+
+
+.product:hover::before,
+.category:hover::before{
+
+top:100%;
+
+left:100%;
+
+}
+
+
+
+/* سه بعدی واقعی */
+
+.product:hover,
+.category:hover{
+
+transform:
+
+translateY(-20px)
+
+rotateX(8deg)
+
+rotateY(-8deg);
+
+
+box-shadow:
+
+0 50px 100px rgba(0,0,0,.25);
+
+}
+
+
+
+/* دکمه های نئونی */
+
+
+.add-btn,
+.hero-btn,
+.cart{
+
+
+background:
+
+linear-gradient(
+135deg,
+#00ffaa,
+hsl(115, 100%, 14%)
+);
+
+
+border:
+
+1px solid rgba(255,255,255,.5);
+
+
+box-shadow:
+
+0 0 20px rgba(0, 255, 191, 0.5),
+
+0 15px 35px rgba(0,0,0,.2);
+
+
+transition:.4s;
+
+
+}
+
+
+
+.add-btn:hover,
+.hero-btn:hover,
+.cart:hover{
+
+
+box-shadow:
+
+0 0 40px rgba(35,215,102,.9);
+
+
+transform:
+
+translateY(-5px)
+scale(1.05);
+
+
+}
+
+
+
+/* عکس محصول */
+
+.product-img{
+
+
+background:
+
+linear-gradient(
+145deg,
+#ffffff,
+#dff5e8
+);
+
+
+}
+
+
+
+/* سرچ شیشه ای */
+
+.search-box{
+
+background:
+
+rgba(255,255,255,.35);
+
+
+backdrop-filter:
+
+blur(30px);
+
+
+border:
+
+1px solid white;
+
+
+box-shadow:
+
+0 30px 70px rgba(0,0,0,.18);
+
+
+}
+
+
+
+/* ورود نرم */
+
+.product,
+.category,
+.hero{
+
+
+animation:
+
+fadeIn .8s ease;
+
+
+}
+
+
+
+@keyframes fadeIn{
+
+
+from{
+
+opacity:0;
+
+transform:
+translateY(50px);
+
+}
+
+
+to{
+
+opacity:1;
+
+}
+
+
+}
+/* ===== NILA PRO ANIMATIONS ===== */
+
+
+/* انیمیشن ورود هیرو */
+
+.hero-text{
+
+animation: heroText .9s ease forwards;
+
+}
+
+
+.hero-icon{
+
+animation: floating 3s ease-in-out infinite;
+
+}
+
+
+
+@keyframes heroText{
+
+from{
+
+opacity:0;
+
+transform:translateX(80px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+
+
+@keyframes floating{
+
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-20px);
+
+}
+
+}
+
+
+
+/* دایره هیرو نورانی */
+
+.hero-icon{
+
+box-shadow:
+
+0 0 40px rgba(21,148,71,.35),
+
+0 30px 80px rgba(0,0,0,.15);
+
+}
+
+
+
+/* ورود محصولات یکی یکی */
+
+.product{
+
+animation:
+
+productShow .7s ease forwards;
+
+opacity:0;
+
+}
+
+
+
+.product:nth-child(1){
+
+animation-delay:.1s;
+
+}
+
+
+.product:nth-child(2){
+
+animation-delay:.25s;
+
+}
+
+
+.product:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+
+.product:nth-child(4){
+
+animation-delay:.55s;
+
+}
+
+
+
+@keyframes productShow{
+
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(70px)
+
+scale(.9);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0)
+
+scale(1);
+
+}
+
+}
+
+
+
+/* عکس محصول هنگام هاور */
+
+.product:hover .product-img{
+
+transform:
+
+scale(1.12)
+
+rotate(5deg);
+
+}
+
+
+
+.product-img{
+
+transition:.5s;
+
+}
+
+
+
+/* حرکت نرم عنوان‌ها */
+
+.section-title h2{
+
+animation:
+
+titleMove 1s ease;
+
+}
+
+
+
+@keyframes titleMove{
+
+
+from{
+
+opacity:0;
+
+letter-spacing:10px;
+
+}
+
+
+to{
+
+opacity:1;
+
+letter-spacing:normal;
+
+}
+
+}
+
+
+
+/* دکمه هیرو حالت زنده */
+
+.hero-btn{
+
+animation:
+
+pulseBtn 2s infinite;
+
+}
+
+
+
+@keyframes pulseBtn{
+
+
+0%{
+
+box-shadow:
+
+0 0 0 0 rgba(21,148,71,.5);
+
+}
+
+
+70%{
+
+box-shadow:
+
+0 0 0 20px rgba(21,148,71,0);
+
+}
+
+
+100%{
+
+box-shadow:
+
+0 0 0 0 rgba(21,148,71,0);
+
+}
+
+
+}
+.hero-icon img{
+    width:180px;
+    height:180px;
+    object-fit:contain;
+}
+.categories{
+    direction:rtl;
+}
+
+
+.category{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.category-icon{
+    position:relative;
+    left:0;
+    right:0;
+    transform:none;
+}
+
+
+.category-icon img{
+    position:relative;
+    left:auto;
+    right:auto;
+    transform:none;
+}
+.category{
+
+    padding:10px;
+
+    min-height:120px;
+
+}
+
+
+.category-icon img{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+
+.categories{
+
+    gap:10px;
+
+}
+
+
+.category h3{
+
+    font-size:14px;
+
+}
     </style>
 </head>
 
@@ -412,9 +1032,9 @@
         </a>
     </div>
 
-    <div class="hero-icon">
-        💊
-    </div>
+   <div class="hero-icon">
+    <img src="images.png" alt="دارو">
+</div>
 
 </section>
 
@@ -437,35 +1057,41 @@
         <p>محصول مورد نیاز خود را سریع پیدا کنید</p>
     </div>
 
-    <div class="categories">
+    <a href="drugs.html" class="category">
 
-        <div class="category">
-            <div class="category-icon">
-                <img src="d:\360_F_572562375_jjSGozGqWww5I8GvGPXJ6FhFcVXqeqUH.jpg" alt="داروه">
-            </div>
-            <h3>داروها</h3>
-        </div>
+    <div class="category-icon">
+        <img src="360_F_572562375_jjSGozGqWww5I8GvGPXJ6FhFcVXqeqUH.jpg" alt="داروها">
+    </div>
 
-        <div class="category">
-            <div class="category-icon">
-                <img src="c:\Users\Elecomp\Documents\image\GELCIN2200ML00011-2024622144116499.jpg" alt="بهداشتی و مراقب">
-            </div>
-            <h3>بهداشتی و مراقبتی</h3>
-        </div>
+    <h3>داروها</h3>
 
-        <div class="category">
-            <div class="category-icon">
-                <img src="d:\images.jfif" alt="مکمل‌ها">
-            </div>
-            <h3>مکمل‌ها</h3>
-        </div>
+<a href="beauty.html" class="category">
 
-        <div class="category">
-            <div class="category-icon">
-                <img src="d:\-2147483648_-220759.jpg" alt="مادر و کودک">
-            </div>
-            <h3>مادر و کودک</h3>
-        </div>
+    <div class="category-icon">
+        <img src="GELCIN2200ML00011-2024622144116499.jpg" alt="آرایشی">
+    </div>
+
+    <h3>آرایشی و بهداشتی</h3>
+
+</a>
+       <a href="supplements.html" class="category">
+
+    <div class="category-icon">
+        <img src="images.jfif" alt="مکمل">
+    </div>
+
+    <h3>مکمل‌ها</h3>
+
+</a>
+<a href="mother-child.html" class="category">
+
+    <div class="category-icon">
+        <img src="-2147483648_-220759.jpg" alt="مادر و کودک">
+    </div>
+
+    <h3>مادر و کودک</h3>
+
+</a>
 
     </div>
 

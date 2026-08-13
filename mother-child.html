@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مادر و کودک | NILA</title>
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:tahoma;
+}
+
+body{
+
+    margin:0;
+    background:#f5fbf7;
+    color:#173b2a;
+
+}
+
+
+header{
+
+    background:white;
+    padding:20px 7%;
+    box-shadow:0 5px 20px #0001;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+.logo{
+
+    color:#159447;
+    font-size:25px;
+    font-weight:bold;
+
+}
+
+
+.back{
+
+    text-decoration:none;
+    color:#159447;
+
+}
+
+
+
+h1{
+
+    text-align:center;
+    margin:40px;
+    color:#126c36;
+
+}
+
+
+
+.products{
+
+    padding:20px 7%;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+.product{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 30px #0001;
+
+    transition:.3s;
+
+}
+
+
+
+.product:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.product img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+}
+
+
+
+.info{
+
+    padding:20px;
+
+}
+
+
+
+.price{
+
+    color:#159447;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#159447;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+        .product img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    background:white;
+    padding:10px;
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+👶 NILA | مادر و کودک
+</div>
+
+
+<a class="back" href="index.html">
+بازگشت به خانه
+</a>
+
+
+</header>
+
+
+
+<h1>
+محصولات مادر و کودک
+</h1>
+
+
+
+<div class="products" id="productList">
+
+</div>
+
+
+
+
+<script>
+
+
+const API="https://nila-h3jq.onrender.com";
+
+
+
+async function loadBeauty(){
+
+
+const res =
+await fetch(API+"/products");
+
+const data = await res.json();
+
+console.log("API OK");
+console.log(data);
+
+
+console.log(data);
+
+const beauty = data;
+
+
+
+const box =
+document.getElementById("productList");
+
+
+
+box.innerHTML="";
+
+
+
+beauty.forEach(product=>{
+
+
+box.innerHTML += `
+
+
+<div class="product">
+
+
+<img src="${product.image}">
+
+
+<div class="info">
+
+
+<h3>
+${product.name}
+</h3>
+
+
+<p>
+${product.description || ""}
+</p>
+
+
+<div class="price">
+
+${product.price.toLocaleString()} تومان
+
+</div>
+
+
+<br>
+
+
+<button onclick="addToCart('${product.name}',${product.price})">
+
+افزودن به سبد
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+function addToCart(name,price){
+
+
+let cart =
+JSON.parse(localStorage.getItem("cartItems")) || [];
+
+
+
+let item =
+cart.find(p=>p.name===name);
+
+
+
+if(item){
+
+item.quantity++;
+
+}else{
+
+
+cart.push({
+
+name:name,
+
+price:Number(price),
+
+quantity:1
+
+});
+
+
+}
+
+
+
+localStorage.setItem(
+"cartItems",
+JSON.stringify(cart)
+);
+
+
+
+alert("به سبد خرید اضافه شد");
+
+
+}
+
+
+
+loadBeauty();
+
+
+</script>
+
+
+</body>
+
+</html>
